@@ -50,31 +50,6 @@
             background-color: lightblue; /* Change the color as needed */
             margin-top: 60px; /* Space for the top bar */
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="title">ClickSor</div>
-        <div class="top-bar">
-            <button>Button 1</button>
-            <button>Button 2</button>
-            <button>Button 3</button>
-            <button>Button 4</button>
-            <button>Button 5</button>
-            <button>Button 6</button>
-            <button>Button 7</button>
-            <button>Button 8</button>
-            <button>Button 9</button>
-        </div>
-        <div class="half-page-box">
-            <!-- Content goes here -->
-          <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Video Dynamically</title>
-    <style>
         .video-container {
             max-width: 800px;
             margin: auto;
@@ -102,12 +77,27 @@
     </style>
 </head>
 <body>
-
-    <div class="video-container">
-        <h2></h2>
-        <input type="file" id="video-file" accept="video/*" style="display: none;">
-        <button id="add-video-btn">Add Video</button>
-        <div id="video-list"></div>
+    <div class="container">
+        <div class="title">ClickSor</div>
+        <div class="top-bar">
+            <button>Button 1</button>
+            <button>Button 2</button>
+            <button>Button 3</button>
+            <button>Button 4</button>
+            <button>Button 5</button>
+            <button>Button 6</button>
+            <button>Button 7</button>
+            <button>Button 8</button>
+            <button>Button 9</button>
+        </div>
+        <div class="half-page-box">
+            <div class="video-container">
+                <h2>Videos</h2>
+                <input type="file" id="video-file" accept="video/*" style="display: none;">
+                <button id="add-video-btn">Add Video</button>
+                <div id="video-list"></div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -120,7 +110,23 @@
             const file = event.target.files[0];
             if (file) {
                 const videoURL = URL.createObjectURL(file);
+                saveVideoURL(videoURL);
+                displayVideos();
+            }
+        });
 
+        function saveVideoURL(url) {
+            let videos = JSON.parse(localStorage.getItem('videos')) || [];
+            videos.push(url);
+            localStorage.setItem('videos', JSON.stringify(videos));
+        }
+
+        function displayVideos() {
+            const videoList = document.getElementById('video-list');
+            videoList.innerHTML = ''; // Clear the list before repopulating
+
+            let videos = JSON.parse(localStorage.getItem('videos')) || [];
+            videos.forEach(url => {
                 // Create a new video element
                 const video = document.createElement('video');
                 video.controls = true;
@@ -128,22 +134,22 @@
 
                 // Create a source element
                 const source = document.createElement('source');
-                source.src = videoURL;
-                source.type = file.type;
+                source.src = url;
+                source.type = 'video/mp4'; // Assuming video is mp4
 
                 // Append source to video
                 video.appendChild(source);
 
                 // Append video to the video list container
-                document.getElementById('video-list').appendChild(video);
-            }
-        });
-    </script>
+                videoList.appendChild(video);
+            });
+        }
 
-</body>
-</html>
-        </div>
-    </div>
+        // Load videos when the page is loaded
+        window.onload = function() {
+            displayVideos();
+        };
+    </script>
 </body>
 </html>
 
