@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Half Page Box with Retro Title</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .container {
+            width: 100%;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            position: relative; /* Allows absolute positioning of title */
+        }
+        .top-bar {
+            width: 100%;
+            height: 60px; /* Height for the bar */
+            background-color: #333; /* Dark background for the bar */
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Retro shadow effect */
+            position: absolute;
+            bottom: 0;
+        }
+        .title {
+            color: #FFD700; /* Bright gold color for the title */
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* Retro font */
+            font-size: 36px; /* Larger font size for the title */
+            font-weight: bold;
+            text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Retro text shadow */
+            position: absolute;
+            top: 10px; /* Distance from the top of the container */
+            left: 10px; /* Distance from the left of the container */
+        }
+        .top-bar button {
+            background-color: #fff; /* White buttons */
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .half-page-box {
+            flex-grow: 1;
+            background-color: lightblue; /* Change the color as needed */
+            margin-top: 60px; /* Space for the top bar */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">ClickSor</div>
+        <div class="top-bar">
+            <button>Button 1</button>
+            <button>Button 2</button>
+            <button>Button 3</button>
+            <button>Button 4</button>
+            <button>Button 5</button>
+            <button>Button 6</button>
+            <button>Button 7</button>
+            <button>Button 8</button>
+            <button>Button 9</button>
+        </div>
+        <div class="half-page-box">
+            <!-- Content goes here -->
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Video Dynamically</title>
+    <style>
+        .video-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+        #add-video-btn {
+            background-color: #f0f0f0;
+            border: 2px solid #000;
+            border-radius: 12px; /* Curved corners */
+            font-size: 18px;
+            padding: 15px 30px; /* Bigger size */
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #add-video-btn:hover {
+            background-color: #e0e0e0;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-container">
+        <h2></h2>
+        <input type="file" id="video-file" accept="video/*" style="display: none;">
+        <button id="add-video-btn">Add Video</button>
+        <div id="video-list"></div>
+    </div>
+
+    <script>
+        document.getElementById('add-video-btn').addEventListener('click', function() {
+            // Trigger the file input dialog
+            document.getElementById('video-file').click();
+        });
+
+        document.getElementById('video-file').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const videoURL = URL.createObjectURL(file);
+
+                // Create a new video element
+                const video = document.createElement('video');
+                video.controls = true;
+                video.width = 640; // You can adjust the width
+
+                // Create a source element
+                const source = document.createElement('source');
+                source.src = videoURL;
+                source.type = file.type;
+
+                // Append source to video
+                video.appendChild(source);
+
+                // Append video to the video list container
+                document.getElementById('video-list').appendChild(video);
+            }
+        });
+    </script>
+
+</body>
+</html>
+        </div>
+    </div>
+</body>
+</html>
+
